@@ -14,7 +14,7 @@ def lista_destinos(request):
 
 def añadir_destinos(request):
     if request.method == 'POST':
-        form = DestinosTuristicosForm(request.POST)
+        form = DestinosTuristicosForm(request.POST, request.FILES)
         print(form.errors)
         if form.is_valid():
             form.save()
