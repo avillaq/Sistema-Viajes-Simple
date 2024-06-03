@@ -32,5 +32,8 @@ def editar_destinos(request, id_destino):
     form = DestinosTuristicosForm(instance=destino)
     return render(request, 'editar_destinos.html', {'form':form})
 
-def eliminar_destinos(request):
-    pass
+def eliminar_destinos(request, id_destino):
+    destino = DestinosTuristicos.objects.get(id=id_destino).delete()
+    
+    return redirect('lista_destinos')
+    
