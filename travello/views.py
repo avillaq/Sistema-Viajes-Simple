@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import DestinosTuristicos
 from .forms import DestinosTuristicosForm
+import os
 
 # Create your views here.
 def index(request):
@@ -33,7 +34,10 @@ def editar_destinos(request, id_destino):
     return render(request, 'editar_destinos.html', {'form':form})
 
 def eliminar_destinos(request, id_destino):
-    destino = DestinosTuristicos.objects.get(id=id_destino).delete()
+    destino = DestinosTuristicos.objects.get(id=id_destino)
+    img_url = destino.imagenCiudad.url
     
+    destino.delete()
+    os.remove('.'+img_url)
     return redirect('lista_destinos')
     
