@@ -21,3 +21,9 @@ def añadir_destinos(request):
             return redirect('lista_destinos')
     form = DestinosTuristicosForm()
     return render(request, 'añadir_destinos.html', {'form':form})
+
+def editar_destinos(request, id):
+    pass
+
+def eliminar_destinos(request):
+    pass
