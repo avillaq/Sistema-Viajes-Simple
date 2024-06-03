@@ -6,3 +6,7 @@ from .models import DestinosTuristicos
 def index(request):
     dests = DestinosTuristicos.objects.all()
     return render(request, 'index.html', {'dests': dests})
+
+def lista_destinos(request):
+    dests = DestinosTuristicos.objects.all()
+    return render(request, 'lista_destinos.html', {'dests': dests})
