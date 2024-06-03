@@ -10,3 +10,6 @@ def index(request):
 def lista_destinos(request):
     dests = DestinosTuristicos.objects.all()
     return render(request, 'lista_destinos.html', {'dests': dests})
+
+def añadir_destinos(request):
+    return render(request, 'añadir_destinos.html')
