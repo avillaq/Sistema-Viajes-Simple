@@ -1,9 +1,39 @@
 {% extends 'base.html' %}
 
-{% block name %}
+{% block content %}
 
     <h1>Lista de destinos</h1>
-    
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Description</th>
+                <th>Precio</th>
+                <th>Oferta</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dest in dests %}
+            <tr>
+                <td>{{ dest.nombreCiudad }}</td>
+                <td>{{ dest.descripcionCiudad }}</td>
+                <td>S/. {{ dest.precioTour }}</td>
+                {% if dest.ofertaTour %}
+                    <td>Si</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
+                <td>
+                    <a href="">Editar</a>
+                    <a href="">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 
 {% endblock %}
 
