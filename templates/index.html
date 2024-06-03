@@ -37,7 +37,7 @@
 										{% if user.is_authenticated %}
 											{% if user.is_staff %}
 												<li>Hello Admin</li>
-												<li><a href="travello/lista_destinos">Destinos</a></li>	
+												<li><a href="/travello/lista_destinos">Destinos</a></li>	
 											{% else  %}
 												<li>Hello , {{user.first_name}}</li>
 											{% endif %}
