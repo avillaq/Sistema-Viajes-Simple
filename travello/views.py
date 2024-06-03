@@ -22,8 +22,15 @@ def añadir_destinos(request):
     form = DestinosTuristicosForm()
     return render(request, 'añadir_destinos.html', {'form':form})
 
-def editar_destinos(request, id):
-    pass
+def editar_destinos(request, id_destino):
+    destino = DestinosTuristicos.objects.get(id=id_destino)
+    if request.method == 'POST':
+        form = DestinosTuristicosForm(request.POST, request.FILES, instance=destino)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_destinos')
+    form = DestinosTuristicosForm(instance=destino)
+    return render(request, 'editar_destinos.html', {'form':form})
 
 def eliminar_destinos(request):
     pass
