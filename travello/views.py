@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import DestinosTuristicos
 from .forms import DestinosTuristicosForm
 import os
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -10,10 +11,16 @@ def index(request):
     return render(request, 'index.html', {'dests': dests})
 
 def lista_destinos(request):
+    if not request.user.is_authenticated or not request.user.is_superuser: 
+        return redirect('index')
+
     dests = DestinosTuristicos.objects.all()
     return render(request, 'lista_destinos.html', {'dests': dests})
 
 def añadir_destinos(request):
+    if not request.user.is_authenticated or not request.user.is_superuser: 
+        return redirect('index')
+
     if request.method == 'POST':
         form = DestinosTuristicosForm(request.POST, request.FILES)
         print(form.errors)
@@ -24,6 +31,9 @@ def añadir_destinos(request):
     return render(request, 'añadir_destinos.html', {'form':form})
 
 def editar_destinos(request, id_destino):
+    if not request.user.is_authenticated or not request.user.is_superuser: 
+        return redirect('index')
+    
     destino = DestinosTuristicos.objects.get(id=id_destino)
     if request.method == 'POST':
         form = DestinosTuristicosForm(request.POST, request.FILES, instance=destino)
@@ -34,6 +44,9 @@ def editar_destinos(request, id_destino):
     return render(request, 'editar_destinos.html', {'form':form})
 
 def eliminar_destinos(request, id_destino):
+    if not request.user.is_authenticated or not request.user.is_superuser: 
+        return redirect('index')
+    
     destino = DestinosTuristicos.objects.get(id=id_destino)
     img_url = destino.imagenCiudad.url
     
