@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import DestinosTuristicos
 from .forms import DestinosTuristicosForm
@@ -13,5 +13,11 @@ def lista_destinos(request):
     return render(request, 'lista_destinos.html', {'dests': dests})
 
 def añadir_destinos(request):
+    if request.method == 'POST':
+        form = DestinosTuristicosForm(request.POST)
+        print(form.errors)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_destinos')
     form = DestinosTuristicosForm()
     return render(request, 'añadir_destinos.html', {'form':form})
