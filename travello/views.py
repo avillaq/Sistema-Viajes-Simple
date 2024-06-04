@@ -1,14 +1,16 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
 from .models import DestinosTuristicos
 from .forms import DestinosTuristicosForm
 import os
-from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your views here.
 def index(request):
     dests = DestinosTuristicos.objects.all()
-    return render(request, 'index.html', {'dests': dests})
+    proximos_viajes = DestinosTuristicos.objects.filter(fechaTour__gte=timezone.now()).order_by('fechaTour')
+    proximos_viajes = proximos_viajes[:3]
+    print(proximos_viajes)
+    return render(request, 'index.html', {'dests': dests, 'proximos_viajes': proximos_viajes})
 
 def lista_destinos(request):
     if not request.user.is_authenticated or not request.user.is_superuser: 
