@@ -8,3 +8,6 @@ class DestinosTuristicos(models.Model):
     precioTour = models.IntegerField()
     ofertaTour = models.BooleanField(default=False)
     fechaTour = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return self.nombreCiudad
