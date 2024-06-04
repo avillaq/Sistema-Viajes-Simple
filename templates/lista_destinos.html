@@ -3,7 +3,8 @@
 {% block content %}
 
     <h1>Lista de destinos</h1>
-    <h3><a href="/travello/añadir_destinos">Añadir Destinos</a></h3>
+    <a href="/travello/" class="btn btn-primary">Atras</a>
+    <a href="/travello/añadir_destinos" class="btn btn-primary">Añadir Destinos</a>
 
     <table class="table table-striped">
         <thead>
@@ -27,8 +28,8 @@
                     <td>No</td>
                 {% endif %}
                 <td>
-                    <a href="/travello/editar_destinos/{{ dest.id }}">Editar</a>
-                    <a href="/travello/eliminar_destinos/{{ dest.id }}">Eliminar</a>
+                    <a href="/travello/editar_destinos/{{ dest.id }}" class="btn btn-warning">Editar</a>
+                    <a href="/travello/eliminar_destinos/{{ dest.id }}" class="btn btn-danger">Eliminar</a>
                 </td>
             </tr>
             {% endfor %}
