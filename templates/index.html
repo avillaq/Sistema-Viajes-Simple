@@ -423,8 +423,8 @@
 								<div class="news_post_image"><img src="{{proximo.imagenCiudad.url}}" alt=""></div>
 								<div class="news_post_content" style="align-self: center;">
 									<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
-										<div>02</div>
-										<div>june</div>
+										<div>{{ proximo.fechaTour|date:"d" }}</div>
+                						<div>{{ proximo.fechaTour|date:"F" }}</div>
 									</div>
 									<div class="news_post_title"><a href="#">{{ proximo.nombreCiudad }}</a></div>
 									<div class="news_post_category">
