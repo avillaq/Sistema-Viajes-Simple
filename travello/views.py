@@ -9,7 +9,6 @@ def index(request):
     dests = DestinosTuristicos.objects.all()
     proximos_viajes = DestinosTuristicos.objects.filter(fechaTour__gte=timezone.now()).order_by('fechaTour')
     proximos_viajes = proximos_viajes[:3]
-    print(proximos_viajes)
     return render(request, 'index.html', {'dests': dests, 'proximos_viajes': proximos_viajes})
 
 def lista_destinos(request):
